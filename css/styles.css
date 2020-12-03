@@ -1,0 +1,109 @@
+
+body {
+    height: 95vh;
+    display: flex;
+  }
+  
+  #mapGrid {
+    align-content: center;
+    justify-content: center;
+    margin: auto;
+
+  }
+  
+  .mapGridRow {
+    align-content: center;
+    justify-content: center;
+    margin: auto;
+    display: flex;
+    flex: 1 100%;
+    flex-direction: row;
+    
+  }
+  
+  .mapSquare {
+    height: 40px;
+    width: 40px;
+    background-color: #d8d8d8;
+    border: solid 1px #ffff;
+  }
+  
+  .mapSquare:hover {
+    cursor: pointer;
+  }
+  
+  .availableSquare {
+    box-shadow: inset 0 0 10px white;
+  }
+  
+  .blockedSquare {
+    background-color: black;
+    opacity: 85%;
+    background-size: cover;
+    cursor: not-allowed;
+  }
+  
+  .blockedSquare:hover {
+    background-size: cover;
+    cursor: not-allowed;
+  }
+  
+  .weapon {
+    background-size: cover;
+  }
+
+  .w1 {
+    background-image: url("../images/ico_flamethrower_pack.gif");
+  
+  }
+  
+  .w2 {
+    background-image: url("../images/ico_super_pack.gif");
+  
+  }
+  
+  .w3 {
+    background-image: url("../images/ico_fuzz_pack.gif");
+  
+  }
+  
+  .w4 {
+    background-image: url("../images/ico_plasma_pack.gif");
+  
+  }
+
+   
+  .weapon {
+    background-size: cover;
+  }
+
+  .Flamethrower {
+    background-image: url("../images/ico_flamethrower_pack.gif");
+  
+  }
+  
+  .Super-star {
+    background-image: url("../images/ico_super_pack.gif");
+  
+  }
+  
+  .Fuzz-Bomb {
+    background-image: url("../images/ico_fuzz_pack.gif");
+  
+  }
+  
+  .Super-Plasma {
+    background-image: url("../images/ico_plasma_pack.gif");
+  }
+
+  .Player1 {
+    background-color: crimson;
+  }
+
+  .Player2 {
+    background-color: mediumseagreen;
+  }
+
+  .clicked {
+    background-color: white;
+  }
