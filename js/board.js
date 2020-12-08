@@ -2,6 +2,7 @@ class Board {
   constructor(size, blocks) {
     this.size = size;
     this.grid = this.createGrid();
+    this.players = [];
     this.blocks = blocks;
   }
 
@@ -35,16 +36,24 @@ class Board {
 
   // Adding Players in grid objects
   addPlayers() {
-    for (var i = 0; i <= 1; i++) {
+    for (var i = 1; i <= 2; i++) {
       const playerObj = this.getRandomEmptyCell();
       console.log(playerObj);
-      players[i].playerPosX = playerObj.posX;
-      players[i].playerPosY = playerObj.posY;
-      playerObj.addItems(players[i]);
+
+      const player = new Player(
+        `Player${i}`,
+        false,
+        playerObj.posX,
+        playerObj.posY
+      );
+      playerObj.addItems(player);
+      console.log(player);
+      this.players.push(player);
     }
-    console.log(players);
+    console.log(this.players);
   }
 
+  // Returns Random Empty Cell
   getRandomEmptyCell() {
     do {
       var x = randomNumber(this.grid.length);
@@ -60,8 +69,28 @@ class Board {
     } while (true);
   }
 
-  // Movement
-  movePlayerTo(clickedID) {}
+  // Returns if the clicked cell is Available
+  isFreeCell(clickedID) {
+    const pos = clickedID.id.split("-");
+    const checkObj = this.grid[pos[0]][pos[1]];
+    if (checkObj.isBlocked === true || checkObj.hasPlayer === true) {
+      return false;
+    } else return true;
+  }
+
+  //! Movement
+  movePlayerTo(clickedID) {
+    console.log(clickedID.id);
+    // board.movePlayerTo(clickedID.id);
+    const pos = clickedID.id.split("-");
+    this.grid[board.players[0].playerPosX][
+      this.players[0].playerPosY
+    ].removeItemById(board.players[0]);
+    this.players[0].playerPosX = pos[0];
+    this.players[0].playerPosY = pos[1];
+    this.grid[pos[0]][pos[1]].isBlocked === false &&
+      this.grid[pos[0]][pos[1]].addItems(this.players[0]);
+  }
 
   // Rendering Game Board
   renderBoard(grid) {

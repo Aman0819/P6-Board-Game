@@ -44,7 +44,7 @@ class Cell {
     this.items = this.items.filter((item) => {
       return item.name !== inItem.name;
     });
-    console.log("FROM REMOVEITEMBYID:  ", this);
+    // console.log("FROM REMOVEITEMBYID:  ", this);
     this.hasPlayer = false;
 
     // this.setRemoveItemType();
