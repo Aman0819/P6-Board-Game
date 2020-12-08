@@ -5,67 +5,65 @@ class Board {
     this.blocks = blocks;
   }
 
+  // Creating a 2-D Grid
   createGrid() {
     var grid = new Array();
     for (var i = 0; i < this.size; i++) {
       grid[i] = new Array();
       for (var j = 0; j < this.size; j++) {
-        var id = j + "-" + i;
-        var cell = new Cell(id, false, false, false, j, i);
+        var id = i + "-" + j;
+        var cell = new Cell(id, false, false, false, i, j);
         grid[i].push(cell);
       }
     }
     return grid;
   }
 
-  addObstacle(grid) {
+  // Adding obstacles in grid objects
+  addObstacle() {
     for (var i = 0; i < this.blocks; i++) {
-      // var x = randomNumber(this.size);
-      // var y = randomNumber(this.size);
-      // if (grid[x][y].isBlocked == true) {
-      //   i--;
-      // } else {
-      //   grid[x][y].isBlocked = true;
-      grid[0][0].getRandomEmptyCell(grid).isBlocked = true;
+      this.getRandomEmptyCell().isBlocked = true;
     }
   }
 
-  addWeapon(grid) {
-    console.log("%cWeapons", "color:blue; font-size: 12px; font-weight: bold");
-    for (var i = 0; i < 4; i++) {
-      var x = randomNumber(this.size);
-      var y = randomNumber(this.size);
-      if (grid[x][y].isBlocked == false) {
-        grid[x][y].hasWeapon = true;
-        grid[x][y].addItems(weapons[i]);
-        // console.log(weapons[i]);
-        console.log(grid[x][y]);
-      } else {
-        i--;
-      }
+  // Adding weapons in grid objects
+  addWeapon() {
+    for (var i = 1; i <= 4; i++) {
+      this.getRandomEmptyCell().addItems(weapons[i]);
     }
   }
 
-  addPlayers(grid) {
-    console.log("%cPlayers", "color:green; font-size: 12px; font-weight: bold");
-    for (var i = 0; i < 2; i++) {
-      var x = randomNumber(this.size);
-      var y = randomNumber(this.size);
+  // Adding Players in grid objects
+  addPlayers() {
+    for (var i = 0; i <= 1; i++) {
+      const playerObj = this.getRandomEmptyCell();
+      console.log(playerObj);
+      players[i].playerPosX = playerObj.posX;
+      players[i].playerPosY = playerObj.posY;
+      playerObj.addItems(players[i]);
+    }
+    console.log(players);
+  }
+
+  getRandomEmptyCell() {
+    do {
+      var x = randomNumber(this.grid.length);
+      var y = randomNumber(this.grid.length);
       if (
-        // grid[x][y].checkAdjacentBlock(grid) ||
-        grid[x][y].isBlocked == true ||
-        grid[x][y].hasWeapon == true ||
-        grid[x][y].hasPlayer == true
+        this.grid[x][y].isBlocked == true ||
+        this.grid[x][y].hasPlayer == true ||
+        this.grid[x][y].hasWeapon == true
       ) {
-        i--;
       } else {
-        grid[x][y].hasPlayer = true;
-        grid[x][y].addItems(players[i]);
-        console.log(grid[x][y]);
+        return this.grid[x][y];
       }
-    }
+    } while (true);
   }
 
+  // Movement
+  movePlayerTo(clickedID) {}
+
+  // Rendering Game Board
   renderBoard(grid) {
     let mapGrid = document.getElementById("mapGrid");
     for (var i = 0; i < this.size; i++) {

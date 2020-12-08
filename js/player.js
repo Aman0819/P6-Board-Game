@@ -5,7 +5,9 @@ let players = [
     health: 100,
     damage: 10,
     weapon: "default",
-    isActive: false,
+    isActive: true,
+    playerPosX: 0,
+    playerPosY: 0,
   },
   {
     name: "Player2",
@@ -14,5 +16,7 @@ let players = [
     damage: 10,
     weapon: "default",
     isActive: false,
+    playerPosX: 0,
+    playerPosY: 0,
   },
 ];

@@ -10,20 +10,20 @@ class Cell {
   }
 
   // Methods
-  getRandomEmptyCell(grid) {
-    do {
-      var x = randomNumber(grid.length);
-      var y = randomNumber(grid.length);
-      if (
-        grid[x][y].isBlocked == true ||
-        grid[x][y].hasPlayer == true ||
-        grid[x][y].hasWeapon == true
-      ) {
-      } else {
-        return grid[x][y];
-      }
-    } while (true);
-  }
+  // getRandomEmptyCell() {
+  //   do {
+  //     var x = randomNumber(this.grid.length);
+  //     var y = randomNumber(this.grid.length);
+  //     if (
+  //       grid[x][y].isBlocked == true ||
+  //       grid[x][y].hasPlayer == true ||
+  //       grid[x][y].hasWeapon == true
+  //     ) {
+  //     } else {
+  //       return grid[x][y];
+  //     }
+  //   } while (true);
+  // }
 
   addItems(item) {
     this.items.push(item);
@@ -35,16 +35,18 @@ class Cell {
     this.hasPlayer = type === "player";
   }
 
-  setRemoveItemType(type) {
-    this.hasWeapon = type === "weapon";
-    this.hasPlayer = type === "player";
-  }
+  // setRemoveItemType(type) {
+  //   // this.hasWeapon = type !== "weapon";
+  //   this.hasPlayer = false;
+  // }
 
-  removeItemById(name) {
+  removeItemById(inItem) {
     this.items = this.items.filter((item) => {
-      item.name !== name;
-      console.log(item);
+      return item.name !== inItem.name;
     });
-    this.setRemoveItemType(name.type);
+    console.log("FROM REMOVEITEMBYID:  ", this);
+    this.hasPlayer = false;
+
+    // this.setRemoveItemType();
   }
 }
