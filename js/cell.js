@@ -9,22 +9,6 @@ class Cell {
     this.items = [];
   }
 
-  // Methods
-  // getRandomEmptyCell() {
-  //   do {
-  //     var x = randomNumber(this.grid.length);
-  //     var y = randomNumber(this.grid.length);
-  //     if (
-  //       grid[x][y].isBlocked == true ||
-  //       grid[x][y].hasPlayer == true ||
-  //       grid[x][y].hasWeapon == true
-  //     ) {
-  //     } else {
-  //       return grid[x][y];
-  //     }
-  //   } while (true);
-  // }
-
   addItems(item) {
     this.items.push(item);
     this.setAddItemType(item.type);
@@ -48,5 +32,149 @@ class Cell {
     this.hasPlayer = false;
 
     // this.setRemoveItemType();
+  }
+
+  checkAdjacentBlocked(grid) {
+    if (
+      this.posY - 1 >= 0 &&
+      grid[this.posX][this.posY - 1].isBlocked == true
+    ) {
+      return true;
+    } else if (
+      this.posY + 1 <= grid.length - 1 &&
+      grid[this.posX][this.posY + 1].isBlocked == true
+    ) {
+      return true;
+    } else if (
+      this.posX - 1 >= 0 &&
+      grid[this.posX - 1][this.posY].isBlocked == true
+    ) {
+      return true;
+    } else if (
+      this.posX + 1 <= grid.length - 1 &&
+      grid[this.posX + 1][this.posY].isBlocked == true
+    ) {
+      return true;
+    } else if (
+      this.posY - 1 >= 0 &&
+      this.posX - 1 >= 0 &&
+      grid[this.posX - 1][this.posY - 1].isBlocked == true
+    ) {
+      return true;
+    } else if (
+      this.posY - 1 >= 0 &&
+      this.posX + 1 <= grid.length - 1 &&
+      grid[this.posX + 1][this.posY - 1].isBlocked == true
+    ) {
+      return true;
+    } else if (
+      this.posY + 1 <= grid.length - 1 &&
+      this.posX - 1 >= 0 &&
+      grid[this.posX - 1][this.posY + 1].isBlocked == true
+    ) {
+      return true;
+    } else if (
+      this.posY + 1 <= grid.length - 1 &&
+      this.posX + 1 <= grid.length - 1 &&
+      grid[this.posX + 1][this.posY + 1].isBlocked == true
+    ) {
+      return true;
+    }
+  }
+
+  checkAdjacentWeapon(grid) {
+    if (
+      this.posY - 1 >= 0 &&
+      grid[this.posX][this.posY - 1].hasWeapon === true
+    ) {
+      return true;
+    } else if (
+      this.posY + 1 <= grid.length - 1 &&
+      grid[this.posX][this.posY + 1].hasWeapon === true
+    ) {
+      return true;
+    } else if (
+      this.posX - 1 >= 0 &&
+      grid[this.posX - 1][this.posY].hasWeapon === true
+    ) {
+      return true;
+    } else if (
+      this.posX + 1 <= grid.length - 1 &&
+      grid[this.posX + 1][this.posY].hasWeapon === true
+    ) {
+      return true;
+    } else if (
+      this.posY - 1 >= 0 &&
+      this.posX - 1 >= 0 &&
+      grid[this.posX - 1][this.posY - 1].hasWeapon === true
+    ) {
+      return true;
+    } else if (
+      this.posY - 1 >= 0 &&
+      this.posX + 1 <= grid.length - 1 &&
+      grid[this.posX + 1][this.posY - 1].hasWeapon === true
+    ) {
+      return true;
+    } else if (
+      this.posY + 1 <= grid.length - 1 &&
+      this.posX - 1 >= 0 &&
+      grid[this.posX - 1][this.posY + 1].hasWeapon === true
+    ) {
+      return true;
+    } else if (
+      this.posY + 1 <= grid.length - 1 &&
+      this.posX + 1 <= grid.length - 1 &&
+      grid[this.posX + 1][this.posY + 1].hasWeapon === true
+    ) {
+      return true;
+    }
+  }
+
+  checkAdjacentPlayer(grid) {
+    if (
+      this.posY - 1 >= 0 &&
+      grid[this.posX][this.posY - 1].hasPlayer === true
+    ) {
+      return true;
+    } else if (
+      this.posY + 1 <= grid.length - 1 &&
+      grid[this.posX][this.posY + 1].hasPlayer === true
+    ) {
+      return true;
+    } else if (
+      this.posX - 1 >= 0 &&
+      grid[this.posX - 1][this.posY].hasPlayer === true
+    ) {
+      return true;
+    } else if (
+      this.posX + 1 <= grid.length - 1 &&
+      grid[this.posX + 1][this.posY].hasPlayer === true
+    ) {
+      return true;
+    } else if (
+      this.posY - 1 >= 0 &&
+      this.posX - 1 >= 0 &&
+      grid[this.posX - 1][this.posY - 1].hasPlayer === true
+    ) {
+      return true;
+    } else if (
+      this.posY - 1 >= 0 &&
+      this.posX + 1 <= grid.length - 1 &&
+      grid[this.posX + 1][this.posY - 1].hasPlayer === true
+    ) {
+      return true;
+    } else if (
+      this.posY + 1 <= grid.length - 1 &&
+      this.posX - 1 >= 0 &&
+      grid[this.posX - 1][this.posY + 1].hasPlayer === true
+    ) {
+      return true;
+    } else if (
+      this.posY + 1 <= grid.length - 1 &&
+      this.posX + 1 <= grid.length - 1 &&
+      grid[this.posX + 1][this.posY + 1].hasPlayer === true
+    ) {
+      return true;
+    }
   }
 }

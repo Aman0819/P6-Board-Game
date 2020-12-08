@@ -1,4 +1,4 @@
-var board = new Board(10, 10);
+var board = new Board(10, 8);
 
 // Adding objects to the Board
 board.addObstacle(this.board.grid);
@@ -6,6 +6,18 @@ board.addWeapon(this.board.grid);
 board.addPlayers(this.board.grid);
 console.log(this.board.grid);
 board.renderBoard(this.board.grid);
+
+const elements = document.getElementsByClassName("mapSquare");
+const movement = function () {
+  const clickedID = document.getElementById(event.srcElement.id);
+  if (
+    board.isFreeCell(clickedID) === true &&
+    board.isWithinAvailableRange(clickedID) === true
+  ) {
+    board.movePlayerTo(clickedID);
+    board.players.reverse();
+  }
+};
 
 // Updating Board on change Board
 do {
@@ -17,15 +29,6 @@ do {
     }
   });
 } while (false);
-
-// Movement
-var elements = document.getElementsByClassName("mapSquare");
-var movement = function () {
-  const clickedID = document.getElementById(event.srcElement.id);
-  if (board.isFreeCell(clickedID) === true) {
-    board.movePlayerTo(clickedID);
-  }
-};
 for (var i = 0; i < elements.length; i++) {
   elements[i].addEventListener("click", movement, false);
 }

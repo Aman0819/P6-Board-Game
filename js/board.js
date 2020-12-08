@@ -23,36 +23,45 @@ class Board {
   // Adding obstacles in grid objects
   addObstacle() {
     for (var i = 0; i < this.blocks; i++) {
-      this.getRandomEmptyCell().isBlocked = true;
+      const randomCell = this.getRandomEmptyCell();
+      if (randomCell.checkAdjacentBlocked(this.grid) === true) {
+        i--;
+      } else {
+        randomCell.isBlocked = true;
+      }
     }
   }
 
   // Adding weapons in grid objects
   addWeapon() {
     for (var i = 1; i <= 4; i++) {
-      this.getRandomEmptyCell().addItems(weapons[i]);
+      const randomCell = this.getRandomEmptyCell();
+      if (randomCell.checkAdjacentWeapon(this.grid) === true) {
+        i--;
+      } else randomCell.addItems(weapons[i]);
     }
   }
 
   // Adding Players in grid objects
   addPlayers() {
     for (var i = 1; i <= 2; i++) {
-      const playerObj = this.getRandomEmptyCell();
-      console.log(playerObj);
-
-      const player = new Player(
-        `Player${i}`,
-        false,
-        playerObj.posX,
-        playerObj.posY
-      );
-      playerObj.addItems(player);
-      console.log(player);
-      this.players.push(player);
+      const randomCell = this.getRandomEmptyCell();
+      if (randomCell.checkAdjacentPlayer(this.grid) === true) {
+        i--;
+      } else {
+        const player = new Player(
+          `Player${i}`,
+          false,
+          randomCell.posX,
+          randomCell.posY
+        );
+        randomCell.addItems(player);
+        this.players.push(player);
+      }
     }
-    console.log(this.players);
   }
 
+  //! Cell Check-Helper Methods
   // Returns Random Empty Cell
   getRandomEmptyCell() {
     do {
@@ -69,13 +78,153 @@ class Board {
     } while (true);
   }
 
-  // Returns if the clicked cell is Available
+  // Checks if the clicked cell is Available
   isFreeCell(clickedID) {
     const pos = clickedID.id.split("-");
     const checkObj = this.grid[pos[0]][pos[1]];
     if (checkObj.isBlocked === true || checkObj.hasPlayer === true) {
       return false;
     } else return true;
+  }
+
+  // Checks if the clicked cell is within specified range
+  isWithinAvailableRange(clickedID) {
+    const pos = clickedID.id.split("-");
+    const checkObj = this.grid[pos[0]][pos[1]];
+    const player = this.players[0];
+
+    // 1st
+    if (
+      player.playerPosY - 1 >= 0 &&
+      this.grid[player.playerPosX][player.playerPosY - 1].posX ===
+        checkObj.posX &&
+      this.grid[player.playerPosX][player.playerPosY - 1].posY === checkObj.posY
+    ) {
+      return true;
+    } else if (
+      player.playerPosY + 1 <= this.grid.length - 1 &&
+      this.grid[player.playerPosX][player.playerPosY + 1].posX ===
+        checkObj.posX &&
+      this.grid[player.playerPosX][player.playerPosY + 1].posY === checkObj.posY
+    ) {
+      return true;
+    } else if (
+      player.playerPosX - 1 >= 0 &&
+      this.grid[player.playerPosX - 1][player.playerPosY].posX ===
+        checkObj.posX &&
+      this.grid[player.playerPosX - 1][player.playerPosY].posY === checkObj.posY
+    ) {
+      return true;
+    } else if (
+      player.playerPosX + 1 <= this.grid.length - 1 &&
+      this.grid[player.playerPosX + 1][player.playerPosY].posX ===
+        checkObj.posX &&
+      this.grid[player.playerPosX + 1][player.playerPosY].posY === checkObj.posY
+    ) {
+      return true;
+    }
+
+    // 2nd
+    if (
+      player.playerPosY - 2 >= 0 &&
+      this.grid[player.playerPosX][player.playerPosY - 2].posX ===
+        checkObj.posX &&
+      this.grid[player.playerPosX][player.playerPosY - 2].posY === checkObj.posY
+    ) {
+      if (
+        this.grid[player.playerPosX][player.playerPosY - 1].isBlocked === false
+      ) {
+        return true;
+      }
+    } else if (
+      player.playerPosY + 2 <= this.grid.length - 1 &&
+      this.grid[player.playerPosX][player.playerPosY + 2].posX ===
+        checkObj.posX &&
+      this.grid[player.playerPosX][player.playerPosY + 2].posY === checkObj.posY
+    ) {
+      if (
+        this.grid[player.playerPosX][player.playerPosY + 1].isBlocked === false
+      ) {
+        return true;
+      }
+    } else if (
+      player.playerPosX - 2 >= 0 &&
+      this.grid[player.playerPosX - 2][player.playerPosY].posX ===
+        checkObj.posX &&
+      this.grid[player.playerPosX - 2][player.playerPosY].posY === checkObj.posY
+    ) {
+      if (
+        this.grid[player.playerPosX - 1][player.playerPosY].isBlocked === false
+      ) {
+        return true;
+      }
+    } else if (
+      player.playerPosX + 2 <= this.grid.length - 1 &&
+      this.grid[player.playerPosX + 2][player.playerPosY].posX ===
+        checkObj.posX &&
+      this.grid[player.playerPosX + 2][player.playerPosY].posY === checkObj.posY
+    ) {
+      if (
+        this.grid[player.playerPosX + 1][player.playerPosY].isBlocked === false
+      ) {
+        return true;
+      }
+    }
+
+    // 3 rd
+    if (
+      player.playerPosY - 3 >= 0 &&
+      this.grid[player.playerPosX][player.playerPosY - 3].posX ===
+        checkObj.posX &&
+      this.grid[player.playerPosX][player.playerPosY - 3].posY === checkObj.posY
+    ) {
+      if (
+        this.grid[player.playerPosX][player.playerPosY - 2].isBlocked ===
+          false &&
+        this.grid[player.playerPosX][player.playerPosY - 1].isBlocked === false
+      ) {
+        return true;
+      }
+    } else if (
+      player.playerPosY + 3 <= this.grid.length - 1 &&
+      this.grid[player.playerPosX][player.playerPosY + 3].posX ===
+        checkObj.posX &&
+      this.grid[player.playerPosX][player.playerPosY + 3].posY === checkObj.posY
+    ) {
+      if (
+        this.grid[player.playerPosX][player.playerPosY + 2].isBlocked ===
+          false &&
+        this.grid[player.playerPosX][player.playerPosY + 1].isBlocked === false
+      ) {
+        return true;
+      }
+    } else if (
+      player.playerPosX - 3 >= 0 &&
+      this.grid[player.playerPosX - 3][player.playerPosY].posX ===
+        checkObj.posX &&
+      this.grid[player.playerPosX - 3][player.playerPosY].posY === checkObj.posY
+    ) {
+      if (
+        this.grid[player.playerPosX - 2][player.playerPosY].isBlocked ===
+          false &&
+        this.grid[player.playerPosX - 1][player.playerPosY].isBlocked === false
+      ) {
+        return true;
+      }
+    } else if (
+      player.playerPosX + 3 <= this.grid.length - 1 &&
+      this.grid[player.playerPosX + 3][player.playerPosY].posX ===
+        checkObj.posX &&
+      this.grid[player.playerPosX + 3][player.playerPosY].posY === checkObj.posY
+    ) {
+      if (
+        this.grid[player.playerPosX + 2][player.playerPosY].isBlocked ===
+          false &&
+        this.grid[player.playerPosX + 1][player.playerPosY].isBlocked === false
+      ) {
+        return true;
+      }
+    }
   }
 
   //! Movement
@@ -86,10 +235,11 @@ class Board {
     this.grid[board.players[0].playerPosX][
       this.players[0].playerPosY
     ].removeItemById(board.players[0]);
-    this.players[0].playerPosX = pos[0];
-    this.players[0].playerPosY = pos[1];
+    this.players[0].playerPosX = parseInt(pos[0]);
+    this.players[0].playerPosY = parseInt(pos[1]);
     this.grid[pos[0]][pos[1]].isBlocked === false &&
       this.grid[pos[0]][pos[1]].addItems(this.players[0]);
+    console.log(this.players);
   }
 
   // Rendering Game Board
