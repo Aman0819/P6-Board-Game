@@ -87,7 +87,7 @@ class Board {
     } else return true;
   }
 
-  // Checks if the clicked cell is within specified range
+  // Checks if the clicked cell is within allowed range of movement
   isWithinAvailableRange(clickedID) {
     const pos = clickedID.id.split("-");
     const checkObj = this.grid[pos[0]][pos[1]];
@@ -132,7 +132,9 @@ class Board {
       this.grid[player.playerPosX][player.playerPosY - 2].posY === checkObj.posY
     ) {
       if (
-        this.grid[player.playerPosX][player.playerPosY - 1].isBlocked === false
+        this.grid[player.playerPosX][player.playerPosY - 1].isBlocked ===
+          false &&
+        this.grid[player.playerPosX][player.playerPosY - 1].hasPlayer === false
       ) {
         return true;
       }
@@ -143,7 +145,9 @@ class Board {
       this.grid[player.playerPosX][player.playerPosY + 2].posY === checkObj.posY
     ) {
       if (
-        this.grid[player.playerPosX][player.playerPosY + 1].isBlocked === false
+        this.grid[player.playerPosX][player.playerPosY + 1].isBlocked ===
+          false &&
+        this.grid[player.playerPosX][player.playerPosY + 1].hasPlayer === false
       ) {
         return true;
       }
@@ -154,7 +158,9 @@ class Board {
       this.grid[player.playerPosX - 2][player.playerPosY].posY === checkObj.posY
     ) {
       if (
-        this.grid[player.playerPosX - 1][player.playerPosY].isBlocked === false
+        this.grid[player.playerPosX - 1][player.playerPosY].isBlocked ===
+          false &&
+        this.grid[player.playerPosX - 1][player.playerPosY].hasPlayer === false
       ) {
         return true;
       }
@@ -165,7 +171,9 @@ class Board {
       this.grid[player.playerPosX + 2][player.playerPosY].posY === checkObj.posY
     ) {
       if (
-        this.grid[player.playerPosX + 1][player.playerPosY].isBlocked === false
+        this.grid[player.playerPosX + 1][player.playerPosY].isBlocked ===
+          false &&
+        this.grid[player.playerPosX + 1][player.playerPosY].hasPlayer === false
       ) {
         return true;
       }
@@ -181,7 +189,11 @@ class Board {
       if (
         this.grid[player.playerPosX][player.playerPosY - 2].isBlocked ===
           false &&
-        this.grid[player.playerPosX][player.playerPosY - 1].isBlocked === false
+        this.grid[player.playerPosX][player.playerPosY - 1].isBlocked ===
+          false &&
+        this.grid[player.playerPosX][player.playerPosY - 2].hasPlayer ===
+          false &&
+        this.grid[player.playerPosX][player.playerPosY - 1].hasPlayer === false
       ) {
         return true;
       }
@@ -194,7 +206,11 @@ class Board {
       if (
         this.grid[player.playerPosX][player.playerPosY + 2].isBlocked ===
           false &&
-        this.grid[player.playerPosX][player.playerPosY + 1].isBlocked === false
+        this.grid[player.playerPosX][player.playerPosY + 1].isBlocked ===
+          false &&
+        this.grid[player.playerPosX][player.playerPosY + 2].hasPlayer ===
+          false &&
+        this.grid[player.playerPosX][player.playerPosY + 1].hasPlayer === false
       ) {
         return true;
       }
@@ -207,7 +223,11 @@ class Board {
       if (
         this.grid[player.playerPosX - 2][player.playerPosY].isBlocked ===
           false &&
-        this.grid[player.playerPosX - 1][player.playerPosY].isBlocked === false
+        this.grid[player.playerPosX - 1][player.playerPosY].isBlocked ===
+          false &&
+        this.grid[player.playerPosX - 2][player.playerPosY].hasPlayer ===
+          false &&
+        this.grid[player.playerPosX - 1][player.playerPosY].hasPlayer === false
       ) {
         return true;
       }
@@ -220,7 +240,11 @@ class Board {
       if (
         this.grid[player.playerPosX + 2][player.playerPosY].isBlocked ===
           false &&
-        this.grid[player.playerPosX + 1][player.playerPosY].isBlocked === false
+        this.grid[player.playerPosX + 1][player.playerPosY].isBlocked ===
+          false &&
+        this.grid[player.playerPosX + 2][player.playerPosY].hasPlayer ===
+          false &&
+        this.grid[player.playerPosX + 1][player.playerPosY].hasPlayer === false
       ) {
         return true;
       }
