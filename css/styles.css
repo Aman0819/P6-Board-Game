@@ -79,29 +79,36 @@ body {
 
   .Flamethrower {
     background-image: url("../images/ico_flamethrower_pack.gif");
-  
+    z-index: 0;
   }
   
   .Super-star {
     background-image: url("../images/ico_super_pack.gif");
-  
+    z-index: 0;
+
   }
   
   .Fuzz-Bomb {
     background-image: url("../images/ico_fuzz_pack.gif");
-  
+    z-index: 0;
   }
   
   .Super-Plasma {
     background-image: url("../images/ico_plasma_pack.gif");
+    z-index: 0;
   }
 
   .Player1 {
-    background-color: crimson;
+    background-image: url("../images/number-square-one.svg");
+    background-size: cover;
+    z-index: 3;
   }
 
   .Player2 {
-    background-color: mediumseagreen;
+    background-image: url("../images/number-square-two.svg");
+    background-size: cover;
+    z-index: 3;
+
   }
 
   .clicked {

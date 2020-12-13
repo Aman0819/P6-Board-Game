@@ -9,29 +9,34 @@ class Cell {
     this.items = [];
   }
 
-  addItems(item) {
+  addItemsWeapon(item) {
     this.items.push(item);
-    this.setAddItemType(item.type);
+    this.setAddItemTypeWeapon(item.type);
+  }
+  addItemsPlayer(item) {
+    this.items.push(item);
+    this.setAddItemTypePlayer(item.type);
   }
 
-  setAddItemType(type) {
+  setAddItemTypeWeapon(type) {
     this.hasWeapon = type === "weapon";
+  }
+  setAddItemTypePlayer(type) {
     this.hasPlayer = type === "player";
   }
 
-  // setRemoveItemType(type) {
-  //   // this.hasWeapon = type !== "weapon";
-  //   this.hasPlayer = false;
-  // }
+  setRemoveItemTypePlayer(type) {
+    // this.hasWeapon = type === "weapon";
+    this.hasPlayer = type === "player";
+  }
 
   removeItemById(inItem) {
     this.items = this.items.filter((item) => {
       return item.name !== inItem.name;
     });
-    // console.log("FROM REMOVEITEMBYID:  ", this);
     this.hasPlayer = false;
 
-    // this.setRemoveItemType();
+    this.setRemoveItemTypePlayer();
   }
 
   checkAdjacentBlocked(grid) {
