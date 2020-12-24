@@ -138,155 +138,111 @@
 //   return result
 // }
 
-isWithinAvailableRange(clickedID) {
-  const pos = clickedID.id.split("-");
+
+showAvailableRange() {
+
   const x = this.players[0].playerPosX;
   const y = this.players[0].playerPosY;
-  const nextX = parseInt(pos[0]);
-  const nextY = parseInt(pos[1]);
-  const checkobj = this.grid[nextX][nextY];
-  let result = false;
-  let direction = "";
   const maxRange = 3;
 
-  if (nextY > y) {
-    direction = {
-      dist: nextY - y,
-      name: "right",
-    };
-  } else if (nextY < y) {
-    direction = {
-      dist: y - nextY,
-      name: "left",
-    };
-  } else if (nextX > x) {
-    direction = {
-      dist: nextX - x,
-      name: "down",
-    };
-  } else if (nextX < x) {
-    direction = {
-      dist: x - nextX,
-      name: "up",
-    };
-  }
-
-  if (direction.dist <= maxRange) {
-    if (direction.name === "right") {
-      for (let i = 1; i <= direction.dist; i++) {
-        if (
-          this.grid[x][y + i].posX === checkobj.posX &&
-          this.grid[x][y + i].posY === checkobj.posY
-        ) {
-          result = true;
-        }
+ 
+ 
+      for (let i = 1; i <= maxRange; i++) {
         if (
           this.grid[x][y + i].isBlocked === true ||
           this.grid[x][y + i].hasPlayer === true
         ) {
-          return false;
+          break;
+        }
+        else {
+          this.grid[x][y + i].cssClass = "highlighted"
         }
       }
-    }
+    
 
-    if (direction.name === "left") {
-      for (let i = 1; i <= direction.dist; i++) {
-        if (
-          this.grid[x][y - i].posX === checkobj.posX &&
-          this.grid[x][y - i].posY === checkobj.posY
-        ) {
-          result = true;
-        }
+      for (let i = 1; i <= maxRange; i++) {
         if (
           this.grid[x][y - i].isBlocked === true ||
           this.grid[x][y - i].hasPlayer === true
         ) {
-          return false;
+          break;
+        }
+        else {
+          this.grid[x][y - i].cssClass = "highlighted"
         }
       }
-    }
+    
 
-    if (direction.name === "down") {
-      for (let i = 1; i <= direction.dist; i++) {
-        if (
-          this.grid[x + i][y].posX === checkobj.posX &&
-          this.grid[x + i][y].posY === checkobj.posY
-        ) {
-          result = true;
-        }
+      for (let i = 1; i <= maxRange; i++) {
         if (
           this.grid[x + i][y].isBlocked === true ||
           this.grid[x + i][y].hasPlayer === true
         ) {
-          return false;
+          break;
+        }
+        else {
+          this.grid[x + i][y].cssClass = "highlighted"
         }
       }
-    }
+    
 
-    if (direction.name === "up") {
-      for (let i = 1; i <= direction.dist; i++) {
-        if (
-          this.grid[x - i][y].posX === checkobj.posX &&
-          this.grid[x - i][y].posY === checkobj.posY
-        ) {
-          result = true;
-        }
+      for (let i = 1; i <= maxRange; i++) {
         if (
           this.grid[x - i][y].isBlocked === true ||
           this.grid[x - i][y].hasPlayer === true
         ) {
-          return false;
+          break;
+        }
+        else {
+          this.grid[x - i][y].cssClass = "highlighted"
         }
       }
-    }
-
-    return result;
   }
-}
 
 
-checkAdjacentPlayer() {
-  const player = this.players[0];
-  if (player.playerPosY - 1 >= 0 && this.grid[player.playerPosX][player.playerPosY - 1].hasPlayer === true) {
-    return true
-  }
-  if (player.playerPosY + 1 <= this.grid.length - 1 && this.grid[player.playerPosX][player.playerPosY + 1].hasPlayer === true) {
-      return true
-  }
-  if (player.playerPosX - 1 >= 0 && this.grid[player.playerPosX - 1][player.playerPosY].hasPlayer === true) {
-      return true
-  }
-  if (player.playerPosX + 1 <= this.grid.length - 1 && this.grid[player.playerPosX + 1][player.playerPosY].hasPlayer === true) {
-      return true
-    }
-}
 
-if (
-      player.playerPosY - 1 >= 0 &&
-      this.grid[player.playerPosX][player.playerPosY - 1].posX ===
-        checkObj.posX &&
-      this.grid[player.playerPosX][player.playerPosY - 1].posY === checkObj.posY
-    ) {
-      return true;
-    } else if (
-      player.playerPosY + 1 <= this.grid.length - 1 &&
-      this.grid[player.playerPosX][player.playerPosY + 1].posX ===
-        checkObj.posX &&
-      this.grid[player.playerPosX][player.playerPosY + 1].posY === checkObj.posY
-    ) {
-      return true;
-    } else if (
-      player.playerPosX - 1 >= 0 &&
-      this.grid[player.playerPosX - 1][player.playerPosY].posX ===
-        checkObj.posX &&
-      this.grid[player.playerPosX - 1][player.playerPosY].posY === checkObj.posY
-    ) {
-      return true;
-    } else if (
-      player.playerPosX + 1 <= this.grid.length - 1 &&
-      this.grid[player.playerPosX + 1][player.playerPosY].posX ===
-        checkObj.posX &&
-      this.grid[player.playerPosX + 1][player.playerPosY].posY === checkObj.posY
-    ) {
-      return true;
-    }
+// checkAdjacentPlayer() {
+//   const player = this.players[0];
+//   if (player.playerPosY - 1 >= 0 && this.grid[player.playerPosX][player.playerPosY - 1].hasPlayer === true) {
+//     return true
+//   }
+//   if (player.playerPosY + 1 <= this.grid.length - 1 && this.grid[player.playerPosX][player.playerPosY + 1].hasPlayer === true) {
+//       return true
+//   }
+//   if (player.playerPosX - 1 >= 0 && this.grid[player.playerPosX - 1][player.playerPosY].hasPlayer === true) {
+//       return true
+//   }
+//   if (player.playerPosX + 1 <= this.grid.length - 1 && this.grid[player.playerPosX + 1][player.playerPosY].hasPlayer === true) {
+//       return true
+//     }
+// }
+
+// if (
+//       player.playerPosY - 1 >= 0 &&
+//       this.grid[player.playerPosX][player.playerPosY - 1].posX ===
+//         checkObj.posX &&
+//       this.grid[player.playerPosX][player.playerPosY - 1].posY === checkObj.posY
+//     ) {
+//       return true;
+//     } else if (
+//       player.playerPosY + 1 <= this.grid.length - 1 &&
+//       this.grid[player.playerPosX][player.playerPosY + 1].posX ===
+//         checkObj.posX &&
+//       this.grid[player.playerPosX][player.playerPosY + 1].posY === checkObj.posY
+//     ) {
+//       return true;
+//     } else if (
+//       player.playerPosX - 1 >= 0 &&
+//       this.grid[player.playerPosX - 1][player.playerPosY].posX ===
+//         checkObj.posX &&
+//       this.grid[player.playerPosX - 1][player.playerPosY].posY === checkObj.posY
+//     ) {
+//       return true;
+//     } else if (
+//       player.playerPosX + 1 <= this.grid.length - 1 &&
+//       this.grid[player.playerPosX + 1][player.playerPosY].posX ===
+//         checkObj.posX &&
+//       this.grid[player.playerPosX + 1][player.playerPosY].posY === checkObj.posY
+//     ) {
+//       return true;
+//     }

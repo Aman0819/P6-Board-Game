@@ -51,7 +51,6 @@ class Board {
       } else {
         const player = new Player(
           `Player${i}`,
-          false,
           randomCell.posX,
           randomCell.posY
         );
@@ -99,6 +98,15 @@ class Board {
     let direction = "";
     const maxRange = 3;
     const player = this.players[0];
+
+    if (
+      (nextX < x && nextY > y) ||
+      (nextX < x && nextY < y) ||
+      (nextX > x && nextY < y) ||
+      (nextX > x && nextY > y)
+    ) {
+      return;
+    }
 
     if (nextY > y) {
       direction = {
@@ -238,6 +246,7 @@ class Board {
       return result;
     }
   }
+
   checkAdjacentPlayer() {
     const player = this.players[0];
     if (

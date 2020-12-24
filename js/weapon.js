@@ -1,17 +1,17 @@
 const weapons = [
   { name: "defalt", type: "weapon", cssClass: "default", damage: 10 },
-  { name: "Super-star", type: "weapon", cssClass: "Super-star", damage: 20 },
-  { name: "Fuzz-Bomb", type: "weapon", cssClass: "Fuzz-Bomb", damage: 20 },
+  { name: "Stunner", type: "weapon", cssClass: "Stunner", damage: 20 },
+  { name: "Blaster", type: "weapon", cssClass: "Blaster", damage: 25 },
   {
-    name: "Super-Plasma",
+    name: "Lightsaber",
     type: "weapon",
-    cssClass: "Super-Plasma",
+    cssClass: "Lightsaber",
     damage: 30,
   },
   {
-    name: "Flamethrower",
+    name: "Darksaber",
     type: "weapon",
-    cssClass: "Flamethrower",
-    damage: 30,
+    cssClass: "Darksaber",
+    damage: 40,
   },
 ];

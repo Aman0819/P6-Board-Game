@@ -22,13 +22,12 @@
 // ];
 
 class Player {
-  constructor(name, isActive, playerPosX, playerPosY) {
+  constructor(name, playerPosX, playerPosY) {
     (this.name = name),
       (this.type = "player"),
       (this.health = 100),
       (this.damage = 10),
       (this.weapon = "default"),
-      (this.isActive = isActive),
       (this.playerPosX = playerPosX),
       (this.playerPosY = playerPosY);
   }
