@@ -86,7 +86,7 @@ class Board {
     } else return true;
   }
 
-  // !
+  // Movements Check method
   isWithinAvailableRange(clickedID) {
     const pos = clickedID.id.split("-");
     const x = this.players[0].playerPosX;
@@ -273,6 +273,70 @@ class Board {
     ) {
       return true;
     }
+  }
+
+  fightMode() {
+    // Setting up damage from weapons
+    var players = this.players;
+    players.forEach((player) => {
+      if (player.weapon === "default") {
+      } else {
+        player.damage = player.weapon.damage;
+      }
+    });
+
+    var modal = document.getElementById("myModal");
+    var p1Health = document.getElementById("player1-health");
+    var p1Damage = document.getElementById("player1-damage");
+    var p2Health = document.getElementById("player2-health");
+    var p2Damage = document.getElementById("player2-damage");
+    var attackbtn = document.getElementById("attack");
+    var defendbtn = document.getElementById("defend");
+    modal.style.display = "flex";
+
+    function renderPlayerHealth(name, selector) {
+      players.forEach((player) => {
+        if (player.name === name) {
+          selector.innerHTML = player.health;
+        }
+      });
+    }
+
+    function renderPlayerDamage(name, selector) {
+      players.forEach((player) => {
+        if (player.name === name) {
+          selector.innerHTML = player.damage;
+        }
+      });
+    }
+
+    // p1Health.innerHTML = `${players[0].health}`;
+    renderPlayerHealth("Player1", p1Health);
+    // p1Damage.innerHTML = `${players[0].damage}`;
+    renderPlayerDamage("Player1", p1Damage);
+    // p2Health.innerHTML = `${players[1].health}`;
+    renderPlayerHealth("Player2", p2Health);
+    // p2Damage.innerHTML = `${players[1].damage}`;
+    renderPlayerDamage("Player2", p2Damage);
+
+    function attackPlayer() {
+      players[0].attack(players[1]);
+      renderPlayerHealth("Player1", p1Health);
+      renderPlayerHealth("Player2", p2Health);
+      players.reverse();
+      console.log(players);
+    }
+
+    function defendPlayer() {
+      console.log(players[0]);
+      players[0].defence();
+      renderPlayerHealth("Player1", p1Health);
+      renderPlayerHealth("Player2", p2Health);
+      players.reverse();
+      console.log(players);
+    }
+    attackbtn.addEventListener("click", attackPlayer);
+    defendbtn.addEventListener("click", defendPlayer);
   }
 
   //! Movement

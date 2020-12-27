@@ -13,15 +13,38 @@
     <div class="logo">
         <img src="./images/StarWarsLogo.png" alt="Star Wars">
     </div>
-    <!--  -->
-    <div class="flex-container">
-        <!-- Player A -->
-        <div class="flex-item-1">
-        </div>
+
+    <div>
         <!-- Game Grid -->
         <div class="flex-item-2" id="mapGrid"></div>
-        <!-- Player B -->
-        <div class="flex-item-3"></div>
+
+    </div>
+
+    <!-- Fight Mode -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content flex-container">
+            <div class="one">
+                <h1>Player 1</h1></br>
+                <div id="player1-health"></div>
+                <div id="player1-damage"></div>
+            </div>
+            <div class="two">
+                <div id="attack">
+                    <button>Attack</button>
+                </div>
+                <div id="defend">
+                    <button>Defend</button>
+                </div>
+            </div>
+            <div class="three">
+                <h1>Player 2</h1></br>
+                <div id="player2-health"></div>
+                <div id="player2-damage"></div>
+            </div>
+        </div>
+
     </div>
 </body>
 

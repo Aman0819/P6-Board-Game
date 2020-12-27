@@ -15,7 +15,6 @@ const movement = function () {
     board.isWithinAvailableRange(clickedID) === true
   ) {
     board.movePlayerTo(clickedID);
-
     board.players.reverse();
     console.log(board.grid);
   }
@@ -30,7 +29,10 @@ do {
       elements[i].addEventListener("click", movement, false);
     }
     if (board.checkAdjacentPlayer() === true) {
-      document.getElementById("mapGrid").innerHTML = "<h1>Fight Mode</h1>";
+      document.getElementById("mapGrid").innerHTML = "";
+      do {
+        board.fightMode();
+      } while (false);
     }
   });
 } while (false);
