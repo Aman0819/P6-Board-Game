@@ -95,7 +95,6 @@ body {
     background-repeat: no-repeat;
     background-position: center;
   }
-
   .Player2 {
     background-image: url("../images/Anakin.png");
     background-color: rgba(255, 0, 0, 0.8);
@@ -127,21 +126,6 @@ body {
   }
 
 
-  @media only screen and (max-width: 500px) {
-    .mapSquare {
-    height: 4rem;
-    width: 4rem;
-    }
-
-    .flex-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: stretch;
-    }
-  }
-
-
   .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -153,33 +137,70 @@ body {
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    font-size: large;
-
+    background-color: rgba(136, 136, 136, 0);
   }
   
   /* Modal Content */
   .modal-content {
-    background-color: #fefefe;
-    flex-basis: 80%;
-    border: 1px solid #888;
+    /* background-color: #fefefe; */
     height: 80%;
-    
+    width: 80%;
+    text-align: center;
+    white-space: nowrap;
   }
 
 .flex-container > div {
-    background-color: #f1f1f1;
-    margin: 10px;
-    padding: 20px;
-    font-size: 30px;
+    background-color: #fefefe;
+    margin: 3rem;
+    padding: 5rem;
+    font-size: 18px;
 }
 
-  .one{
-    flex-basis:30%;
-  }
+.current-player {
+  padding-bottom: 13rem;
+}
+
+#attack>button{
+  background-color: rgba(255, 0, 0, 0.712);
+  color: white;
+}
+#defend>button{
+  background-color: rgba(0, 128, 0, 0.658);
+  color: white;
+}
   
-  .two{
-    flex-basis:40%;
+  .fight-buttons{
+    /* height: 50%; */
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: baseline;
   }
-  .three{
-    flex-basis:30%;
+
+
+
+  @media only screen and (max-width: 500px) {
+    body {
+      display: block;
+    }
+    .mapSquare {
+    height: 4rem;
+    width: 4rem;
+    }
+
+    .flex-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: stretch;
+    }
+    .current-player {
+      padding-bottom: 0rem;
+    }
+    .modal {
+      font-size: 14px;
+      overflow: auto;
+      background-color: rgba(136, 136, 136, 0);
+    }
+  
   }

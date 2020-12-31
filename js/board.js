@@ -290,6 +290,7 @@ class Board {
     var p1Damage = document.getElementById("player1-damage");
     var p2Health = document.getElementById("player2-health");
     var p2Damage = document.getElementById("player2-damage");
+    var curentPlayer = document.getElementById("current-player-text");
     var attackbtn = document.getElementById("attack");
     var defendbtn = document.getElementById("defend");
     modal.style.display = "flex";
@@ -310,6 +311,26 @@ class Board {
       });
     }
 
+    function renderCurrentPlayer() {
+      curentPlayer.innerHTML = `${players[0].name}`;
+    }
+    renderCurrentPlayer();
+
+    function GameWon(players) {
+      modal.innerHTML = `<h1>${players[0].name} won the game</h1>`;
+    }
+
+    function checkIfGameIsOver() {
+      players.forEach((player) => {
+        if (player.health === 0) {
+          players = players.filter((item) => {
+            return item !== player;
+          });
+          GameWon(players);
+        }
+      });
+    }
+
     // p1Health.innerHTML = `${players[0].health}`;
     renderPlayerHealth("Player1", p1Health);
     // p1Damage.innerHTML = `${players[0].damage}`;
@@ -324,6 +345,8 @@ class Board {
       renderPlayerHealth("Player1", p1Health);
       renderPlayerHealth("Player2", p2Health);
       players.reverse();
+      renderCurrentPlayer();
+      checkIfGameIsOver();
       console.log(players);
     }
 
@@ -333,6 +356,9 @@ class Board {
       renderPlayerHealth("Player1", p1Health);
       renderPlayerHealth("Player2", p2Health);
       players.reverse();
+      renderCurrentPlayer();
+      checkIfGameIsOver();
+
       console.log(players);
     }
     attackbtn.addEventListener("click", attackPlayer);

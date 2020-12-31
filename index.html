@@ -10,9 +10,11 @@
 
 <body>
     <!-- logo -->
-    <div class="logo">
-        <img src="./images/StarWarsLogo.png" alt="Star Wars">
-    </div>
+    <header>
+        <div class="logo">
+            <img src="./images/StarWarsLogo.png" alt="Star Wars">
+        </div>
+    </header>
 
     <div>
         <!-- Game Grid -->
@@ -21,16 +23,21 @@
     </div>
 
     <!-- Fight Mode -->
-    <div id="myModal" class="modal">
+    <div id="myModal" class="modal container-flex">
 
         <!-- Modal content -->
         <div class="modal-content flex-container">
-            <div class="one">
-                <h1>Player 1</h1></br>
-                <div id="player1-health"></div>
-                <div id="player1-damage"></div>
+            <div class="">
+                <h4>Luke Skywalker</h4></br>
+                <div class="Player1 lol"></div>
+                <div>Health<p id="player1-health"></p>
+                </div>
+                <div>Damage<p id="player1-damage"></p>
+                </div>
             </div>
-            <div class="two">
+            <div class="fight-buttons">
+                <div>Its <span id="current-player-text">
+                    </span>'s turn!</div>
                 <div id="attack">
                     <button>Attack</button>
                 </div>
@@ -38,10 +45,12 @@
                     <button>Defend</button>
                 </div>
             </div>
-            <div class="three">
-                <h1>Player 2</h1></br>
-                <div id="player2-health"></div>
-                <div id="player2-damage"></div>
+            <div class="">
+                <h4>Darth Vader</h4></br>
+                <div>Health<p id="player2-health"></p>
+                </div>
+                <div>Damage<p id="player2-damage"></p>
+                </div>
             </div>
         </div>
 

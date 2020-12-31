@@ -8,7 +8,7 @@ console.log(this.board.grid);
 board.renderBoard(this.board.grid);
 
 const elements = document.getElementsByClassName("mapSquare");
-const movement = function () {
+const movement = function (event) {
   const clickedID = document.getElementById(event.srcElement.id);
   if (
     board.isFreeCell(clickedID) === true &&

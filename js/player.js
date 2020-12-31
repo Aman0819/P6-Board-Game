@@ -34,8 +34,12 @@ class Player {
   }
   attack(target) {
     if (target.health > 0) {
+      this.defend = false;
       const damage = target.defend ? this.damage / 2 : this.damage;
       target.health = target.health - damage;
+      if (target.health < 0) {
+        target.health = 0;
+      }
     }
   }
   defence() {
