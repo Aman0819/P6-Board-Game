@@ -317,7 +317,11 @@ class Board {
     renderCurrentPlayer();
 
     function GameWon(players) {
-      modal.innerHTML = `<h1>${players[0].name} won the game</h1>`;
+      modal.innerHTML = ``;
+      const modal1 = document.querySelector(".modal-victory");
+      const playerWon = document.getElementById("player-won");
+      playerWon.innerHTML = `${players[0].name} Won!!!`;
+      modal1.classList.remove("hidden");
     }
 
     function checkIfGameIsOver() {
