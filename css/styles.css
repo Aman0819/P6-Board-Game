@@ -1,206 +1,389 @@
-* {
+@import url(https://fonts.googleapis.com/css?family=Nunito:200,200italic,300,300italic,regular,italic,600,600italic,700,700italic,800,800italic,900,900italic);
+
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-:root{
-  font-size: 10px;
+:root {
+  font-size: 8px;
+}
+
+@media (min-width: 600px) {
+  :root {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 1080px) {
+  :root {
+    font-size: 12px;
+  }
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  border: none;
 }
 
 body {
-    /* max-height: 95vh; */
-    background-image: url("../images/StarWars2.jpg");
-    background-size: cover;
-  }
+  font-family: "Nunito", sans-serif;
+  background-image: url("../images/StarWars2.jpg");
+  background-size: cover;
+  min-height: 100vh;
+}
 
-  .logo {
-    display: block;
-    width: 100%;
-    text-align: center;
-  }
-  .logo img {
-    height: 3.5rem;
-    padding: 2rem;
-  }
-  
-  #mapGrid {
-    display: block;
-  }
-  
-  .mapGridRow {
-    align-content: center;
-    justify-content: center;
-    margin: auto;
-    display: flex;
-    /* flex: 1 100%; */
-    flex-direction: row;
-    
-  }
-  
-  .mapSquare {
-    height: 5.25rem;
-    width: 5.25rem;
-    background-color: rgba(255, 255, 255, 0.8);
-    border: solid 1px black;
-  }
-  
-  .mapSquare:hover {
-    cursor: pointer;
-  }
-  
-  .availableSquare {
-    box-shadow: inset 0 0 10px black;
-  }
-  
-  .blockedSquare {
-    background-color: black;
-    opacity: 100%;
-    background-image: url("../images/startrooper.png");
-    background-size: cover;
-    cursor: not-allowed;
-  }
-  
-  .blockedSquare:hover {
-    background-size: cover;
-    cursor: not-allowed;
-  }
+.logo {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
 
-  .weapon {
-    background-size: cover;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
+.logo img {
+  height: 3.5rem;
+  margin: 2em auto;
+}
 
-  .Stunner {
-    background-image: url("../images/stunner.png");
-      }
-  
-  .Blaster {
-    background-image: url("../images/blaster.png");
-  }
-  
-  .Lightsaber {
-    background-image: url("../images/lightsaber.png");
-  }
-  
-  .Darksaber {
-    background-image: url("../images/darksaber.png");
-  }
+#mapGrid {
+  display: block;
+}
 
-  .Player1 {
-    background-image: url("../images/Luke.png");
-    background-color: rgba(10, 230, 10, 0.8);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  .Player2 {
-    background-image: url("../images/Anakin.png");
-    background-color: rgba(255, 0, 0, 0.8);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
+.mapGridRow {
+  align-content: center;
+  justify-content: center;
+  margin: auto;
+  display: flex;
+  /* flex: 1 100%; */
+  flex-direction: row;
+
+}
+
+.mapSquare {
+  height: 5.25rem;
+  width: 5.25rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: solid 1px black;
+}
+
+.mapSquare:hover {
+  cursor: pointer;
+}
+
+.availableSquare {
+  box-shadow: inset 0 0 10px black;
+}
+
+.blockedSquare {
+  background-color: black;
+  opacity: 100%;
+  background-image: url("../images/startrooper.png");
+  background-size: cover;
+  cursor: not-allowed;
+}
+
+.blockedSquare:hover {
+  background-size: cover;
+  cursor: not-allowed;
+}
+
+.weapon {
+  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.Stunner {
+  background-image: url("../images/stunner.png");
+}
+
+.Blaster {
+  background-image: url("../images/blaster.png");
+}
+
+.Lightsaber {
+  background-image: url("../images/lightsaber.png");
+}
+
+.Darksaber {
+  background-image: url("../images/darksaber.png");
+}
+
+.Player1 {
+  background-image: url("../images/Luke.png");
+  background-color: rgba(10, 230, 10, 0.8);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.Player2 {
+  background-image: url("../images/Anakin.png");
+  background-color: rgba(255, 0, 0, 0.8);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/*
+  ==========
+    Relevant
+  ==========
+*/
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.flex-item-1 {
+  flex-basis: 30%;
+  color: white;
+}
+
+.flex-item-2 {
+  flex-basis: 60%;
+}
+
+.flex-item-3 {
+  flex-basis: 30%;
+  color: white;
+}
 
 
-  .flex-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: stretch;
-  }
+.modal {
+  display: none;
+  /* display: flex; */
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgba(136, 136, 136, 0);
+}
 
-  .flex-item-1 {
-    flex-basis: 30%;
-    color: white;
-  }
-  
-  .flex-item-2 {
-    flex-basis: 60%;
-  }
+/* Modal Content */
+.modal-content {
+  /* background-color: #fefefe; */
+  display: flex;
+  justify-content: space-evenly;
+  height: 80%;
+  width: 96%;
+  max-width: 1280px;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 1.75rem;
+}
 
-  .flex-item-3 {
-    flex-basis: 30%;
-    color: white;
-  }
+.modal-content__item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: floralwhite;
+  border-radius: .25em;
+  padding: 1em 1.5em;
+}
 
+.modal-content__item+.modal-content__item {
+  margin-left: 1em;
+}
 
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    justify-content: center;
-    align-items: center;
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(136, 136, 136, 0);
-  }
-  
-  /* Modal Content */
-  .modal-content {
-    /* background-color: #fefefe; */
-    height: 80%;
-    width: 80%;
-    text-align: center;
-    white-space: nowrap;
-  }
+.modal-actions__title {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
 
-.flex-container > div {
-    background-color: #fefefe;
-    margin: 3rem;
-    padding: 5rem;
-    font-size: 18px;
+.player-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.player-details__name {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  word-spacing: .1em;
+}
+
+.player-details__image {
+  width: 60%;
+  max-width: 300px;
+}
+
+.player-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.player-stats__desc {
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: left;
+  display: flex;
+}
+
+.player-stats__desc+.player-stats__desc {
+  margin-top: .5em;
+}
+
+.player-stats__values {
+  font-weight: 400;
 }
 
 .current-player {
   padding-bottom: 13rem;
 }
 
-#attack>button{
-  background-color: rgba(255, 0, 0, 0.712);
-  color: white;
+.btn-group {
+  flex-basis: 60%;
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
-#defend>button{
-  background-color: rgba(0, 128, 0, 0.658);
+
+.btn {
+  padding: .75em .85em;
+  border-radius: .25em;
   color: white;
+  text-transform: uppercase;
+  font-size: 1.75rem;
+  font-weight: 500;
 }
-  
-  .fight-buttons{
-    /* height: 50%; */
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: baseline;
+
+.btn-success {
+  background-color: rgba(0, 128, 0, 0.75);
+}
+
+.btn-success:hover {
+  background-color: rgba(0, 128, 0, 0.9);
+}
+
+.btn-warning {
+  background-color: rgba(255, 0, 0, 0.75);
+}
+
+.btn-warning:hover {
+  background-color: rgba(255, 0, 0, 0.9);
+}
+
+.modal-victory {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modal-victory.hidden {
+  display: none;
+}
+
+.modal-victory__overlay {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(51, 51, 51, .35)
+}
+
+.modal-victory__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.modal-victory__content__text {
+  font-size: 2rem;
+  background-color: #fff;
+  border-radius: .25em;
+  padding: 2em;
+  box-shadow: 0 0 2em rgba(51, 51, 51, 0.75);
+}
+
+/*
+  =================
+    Media Queries
+  =================
+*/
+@media (max-width: 600px) {
+  .player-details__image {
+    max-width: 80px;
   }
 
+  .btn {
+    font-size: 1.25rem;
+  }
+}
 
+@media only screen and (max-width: 1080px) {
+  .btn {
+    font-size: 1.5rem;
+  }
 
-  @media only screen and (max-width: 500px) {
-    body {
-      display: block;
-    }
-    .mapSquare {
+  .mapSquare {
     height: 4rem;
     width: 4rem;
-    }
-
-    .flex-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: stretch;
-    }
-    .current-player {
-      padding-bottom: 0rem;
-    }
-    .modal {
-      font-size: 14px;
-      overflow: auto;
-      background-color: rgba(136, 136, 136, 0);
-    }
-  
   }
+
+  .modal-content {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .modal-content__item+.modal-content__item {
+    margin: 0;
+    margin-top: .75em;
+  }
+
+  .player {
+    flex-direction: row;
+  }
+
+  .player-details__image {
+    max-width: 100px;
+  }
+
+  .btn-group {
+    flex-direction: row;
+    justify-content: center;
+    margin: 1em 0 .75em;
+  }
+
+  .btn-success {
+    margin-left: .75em;
+  }
+
+  .current-player {
+    padding-bottom: 0rem;
+  }
+
+  .modal {
+    overflow: auto;
+    background-color: rgba(136, 136, 136, 0);
+  }
+}

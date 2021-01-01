@@ -12,7 +12,7 @@
     <!-- logo -->
     <header>
         <div class="logo">
-            <img src="./images/StarWarsLogo.png" alt="Star Wars">
+            <img src="./images/StarWarsLogo.png" alt="Brand Logo">
         </div>
     </header>
 
@@ -26,34 +26,63 @@
     <div id="myModal" class="modal container-flex">
 
         <!-- Modal content -->
-        <div class="modal-content flex-container">
-            <div class="">
-                <h4>Luke Skywalker</h4></br>
-                <div class="Player1 lol"></div>
-                <div>Health<p id="player1-health"></p>
+        <div class="modal-content">
+            <div class="modal-content__item player">
+                <div class="player-details">
+                    <h4 class="player-details__name">Luke Skywalker</h4></br>
+                    <figure>
+                        <img src="/images/Luke.png" alt="Luke" class="player-details__image">
+                    </figure>
                 </div>
-                <div>Damage<p id="player1-damage"></p>
+                <div class="player-stats">
+                    <div class="player-stats__desc">Health &nbsp;<p class="player-stats__values" id="player1-health">
+                        </p>
+                    </div>
+                    <div class="player-stats__desc">Damage &nbsp;<p class="player-stats__values" id="player1-damage">
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="fight-buttons">
-                <div>Its <span id="current-player-text">
+            <div class="modal-content__item">
+                <div class="modal-actions__title">Its <span id="current-player-text">
                     </span>'s turn!</div>
-                <div id="attack">
-                    <button>Attack</button>
-                </div>
-                <div id="defend">
-                    <button>Defend</button>
+                <div class="btn-group">
+                    <div id="attack">
+                        <button class="btn btn-warning">Attack</button>
+                    </div>
+                    <div id="defend">
+                        <button class="btn btn-success">Defend</button>
+                    </div>
                 </div>
             </div>
-            <div class="">
-                <h4>Darth Vader</h4></br>
-                <div>Health<p id="player2-health"></p>
+            <div class="modal-content__item player">
+                <div class="player-details">
+                    <h4 class="player-details__name">Darth Vader</h4></br>
+                    <figure>
+                        <img src="/images/Anakin.png" alt="Luke" class="player-details__image">
+                    </figure>
                 </div>
-                <div>Damage<p id="player2-damage"></p>
+                <div class="player-stats">
+                    <div class="player-stats__desc">Health &nbsp;<p class="player-stats__values" id="player2-health">
+                        </p>
+                    </div>
+                    <div class="player-stats__desc">Damage &nbsp;<p class="player-stats__values" id="player2-damage">
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="modal-victory hidden">
+        <div class="modal-victory__overlay"></div>
+        <div class="modal-victory__content">
+            <div class="modal-victory__content__text">
+                <h2>
+                    Player 1 won!
+                </h2>
+            </div>
+        </div>
     </div>
 </body>
 
