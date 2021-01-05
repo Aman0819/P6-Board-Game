@@ -25,7 +25,7 @@ do {
   document.getElementById("mapGrid").addEventListener("click", function () {
     document.getElementById("mapGrid").innerHTML = "";
     board.renderBoard(board.grid);
-    for (var i = 0; i < elements.length; i++) {
+    for (let i = 0; i < elements.length; i++) {
       elements[i].addEventListener("click", movement, false);
     }
     if (board.checkAdjacentPlayer() === true) {
@@ -36,6 +36,6 @@ do {
     }
   });
 } while (false);
-for (var i = 0; i < elements.length; i++) {
+for (let i = 0; i < elements.length; i++) {
   elements[i].addEventListener("click", movement, false);
 }

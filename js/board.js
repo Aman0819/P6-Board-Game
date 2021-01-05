@@ -8,12 +8,12 @@ class Board {
 
   // Creating a 2-D Grid
   createGrid() {
-    var grid = new Array();
-    for (var i = 0; i < this.size; i++) {
+    let grid = new Array();
+    for (let i = 0; i < this.size; i++) {
       grid[i] = new Array();
-      for (var j = 0; j < this.size; j++) {
-        var id = i + "-" + j;
-        var cell = new Cell(id, false, false, false, i, j);
+      for (let j = 0; j < this.size; j++) {
+        let id = i + "-" + j;
+        let cell = new Cell(id, false, false, false, i, j);
         grid[i].push(cell);
       }
     }
@@ -22,7 +22,7 @@ class Board {
 
   // Adding obstacles in grid objects
   addObstacle() {
-    for (var i = 0; i < this.blocks; i++) {
+    for (let i = 0; i < this.blocks; i++) {
       const randomCell = this.getRandomEmptyCell();
       if (randomCell.checkAdjacentBlocked(this.grid) === true) {
         i--;
@@ -34,7 +34,7 @@ class Board {
 
   // Adding weapons in grid objects
   addWeapon() {
-    for (var i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 4; i++) {
       const randomCell = this.getRandomEmptyCell();
       if (randomCell.checkAdjacentWeapon(this.grid) === true) {
         i--;
@@ -44,7 +44,7 @@ class Board {
 
   // Adding Players in grid objects
   addPlayers() {
-    for (var i = 1; i <= 2; i++) {
+    for (let i = 1; i <= 2; i++) {
       const randomCell = this.getRandomEmptyCell();
       if (randomCell.checkAdjacentPlayer(this.grid) === true) {
         i--;
@@ -64,8 +64,8 @@ class Board {
   // Returns Random Empty Cell
   getRandomEmptyCell() {
     do {
-      var x = randomNumber(this.grid.length);
-      var y = randomNumber(this.grid.length);
+      let x = randomNumber(this.grid.length);
+      let y = randomNumber(this.grid.length);
       if (
         this.grid[x][y].isBlocked == true ||
         this.grid[x][y].hasPlayer == true ||
@@ -277,7 +277,7 @@ class Board {
 
   fightMode() {
     // Setting up damage from weapons
-    var players = this.players;
+    let players = this.players;
     players.forEach((player) => {
       if (player.weapon === "default") {
       } else {
@@ -285,14 +285,14 @@ class Board {
       }
     });
 
-    var modal = document.getElementById("myModal");
-    var p1Health = document.getElementById("player1-health");
-    var p1Damage = document.getElementById("player1-damage");
-    var p2Health = document.getElementById("player2-health");
-    var p2Damage = document.getElementById("player2-damage");
-    var curentPlayer = document.getElementById("current-player-text");
-    var attackbtn = document.getElementById("attack");
-    var defendbtn = document.getElementById("defend");
+    let modal = document.getElementById("myModal");
+    let p1Health = document.getElementById("player1-health");
+    let p1Damage = document.getElementById("player1-damage");
+    let p2Health = document.getElementById("player2-health");
+    let p2Damage = document.getElementById("player2-damage");
+    let curentPlayer = document.getElementById("current-player-text");
+    let attackbtn = document.getElementById("attack");
+    let defendbtn = document.getElementById("defend");
     modal.style.display = "flex";
 
     function renderPlayerHealth(name, selector) {
@@ -387,11 +387,11 @@ class Board {
   // Rendering Game Board
   renderBoard(grid) {
     let mapGrid = document.getElementById("mapGrid");
-    for (var i = 0; i < this.size; i++) {
+    for (let i = 0; i < this.size; i++) {
       let mapGridRow = document.createElement("div");
       mapGridRow.className = "mapGridRow";
       mapGrid.appendChild(mapGridRow);
-      for (var j = 0; j < this.size; j++) {
+      for (let j = 0; j < this.size; j++) {
         let mapSquare = document.createElement("div");
 
         if (grid[i][j].hasWeapon === true && grid[i][j].hasPlayer === true) {
