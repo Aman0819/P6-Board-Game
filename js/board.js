@@ -79,7 +79,7 @@ class Board {
 
   // Checks if the clicked cell is Available
   isFreeCell(clickedID) {
-    const pos = clickedID.id.split("-");
+    const pos = clickedID.split("-");
     const checkObj = this.grid[pos[0]][pos[1]];
     if (checkObj.isBlocked === true || checkObj.hasPlayer === true) {
       return false;
@@ -88,7 +88,7 @@ class Board {
 
   // Movements Check method
   isWithinAvailableRange(clickedID) {
-    const pos = clickedID.id.split("-");
+    const pos = clickedID.split("-");
     const x = this.players[0].playerPosX;
     const y = this.players[0].playerPosY;
     const nextX = parseInt(pos[0]);
@@ -371,9 +371,9 @@ class Board {
 
   //! Movement
   movePlayerTo(clickedID) {
-    console.log(clickedID.id);
-    // board.movePlayerTo(clickedID.id);
-    const pos = clickedID.id.split("-");
+    console.log(clickedID);
+
+    const pos = clickedID.split("-");
     this.grid[board.players[0].playerPosX][
       this.players[0].playerPosY
     ].removeItemById(board.players[0]);
@@ -386,38 +386,45 @@ class Board {
 
   // Rendering Game Board
   renderBoard(grid) {
-    let mapGrid = document.getElementById("mapGrid");
+    // let mapGrid = $("#mapGrid");
+    // $("#mapGrid").addClass("myClass yourClass");
     for (let i = 0; i < this.size; i++) {
-      let mapGridRow = document.createElement("div");
-      mapGridRow.className = "mapGridRow";
-      mapGrid.appendChild(mapGridRow);
+      // let mapGridRow = document.createElement("div");
+      // mapGridRow.className = "mapGridRow";
+      // mapGrid.append(mapGridRow);
+      let mapGridRow = $("<div/>", {
+        class: "mapGridRow",
+      });
+      $("#mapGrid").append(mapGridRow);
+
       for (let j = 0; j < this.size; j++) {
-        let mapSquare = document.createElement("div");
+        let mapSquare = $("<div/>");
 
         if (grid[i][j].hasWeapon === true && grid[i][j].hasPlayer === true) {
-          mapSquare.className = `mapSquare weapon ${grid[i][j].items[1].name}`;
-          mapSquare.id = `${[i]}-${[j]}`;
-          mapGridRow.appendChild(mapSquare);
+          mapSquare.addClass(`mapSquare weapon ${grid[i][j].items[1].name}`);
+          mapSquare.attr("id", `${[i]}-${[j]}`);
+          mapGridRow.append(mapSquare);
         } else if (grid[i][j].hasWeapon === true) {
-          mapSquare.className = `mapSquare weapon ${grid[i][j].items[0].name}`;
-          mapSquare.id = `${[i]}-${[j]}`;
-          mapGridRow.appendChild(mapSquare);
+          mapSquare.addClass(`mapSquare weapon ${grid[i][j].items[0].name}`);
+          mapSquare.attr("id", `${[i]}-${[j]}`);
+          mapGridRow.append(mapSquare);
         } else if (grid[i][j].hasPlayer === true) {
           if (grid[i][j].items.length === 2) {
-            mapSquare.className = `mapSquare ${grid[i][j].items[1].name}`;
+            mapSquare.addClass(`mapSquare ${grid[i][j].items[1].name}`);
           } else {
-            mapSquare.className = `mapSquare ${grid[i][j].items[0].name}`;
+            mapSquare.addClass(`mapSquare ${grid[i][j].items[0].name}`);
           }
-          mapSquare.id = `${[i]}-${[j]}`;
-          mapGridRow.appendChild(mapSquare);
+          mapSquare.addClass("mapSquare");
+          mapSquare.attr("id", `${[i]}-${[j]}`);
+          mapGridRow.append(mapSquare);
         } else if (grid[i][j].isBlocked === false) {
-          mapSquare.className = "mapSquare ";
-          mapSquare.id = `${[i]}-${[j]}`;
-          mapGridRow.appendChild(mapSquare);
+          mapSquare.addClass("mapSquare");
+          mapSquare.attr("id", `${[i]}-${[j]}`);
+          mapGridRow.append(mapSquare);
         } else if (grid[i][j].isBlocked === true) {
-          mapSquare.className = "mapSquare blockedSquare";
-          mapSquare.id = `${[i]}-${[j]}`;
-          mapGridRow.appendChild(mapSquare);
+          mapSquare.addClass("mapSquare blockedSquare");
+          mapSquare.attr("id", `${[i]}-${[j]}`);
+          mapGridRow.append(mapSquare);
         }
       }
     }
